@@ -8,7 +8,9 @@ class IncidentsController < ApplicationController
     @incident = Incident.find(params[:id])
     
     respond_to do |format|
-      format.html # This will automatically render the show.html.erb template
+      format.html {
+        render :partial => 'show', :locals => {:incident => @incident}
+      }
       format.xml {
         render :text => @incident.to_xml(
           :only => [:description, :latitude, :longitude, :title],
@@ -34,7 +36,11 @@ class IncidentsController < ApplicationController
     @incident = Incident.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html {
+        @incident.latitude = params['latitude']
+        @incident.longitude = params['longitude']
+        render :partial => 'new', :locals => {:incident => @incident}
+      }
       format.xml  { render :xml => @incident }
     end
   end
