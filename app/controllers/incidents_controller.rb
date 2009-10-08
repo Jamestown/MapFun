@@ -1,5 +1,9 @@
 class IncidentsController < ApplicationController
   
+  def news
+    @incidents = Incident.find(:all, :conditions => ['updated_at > ?', Time.now.yesterday])
+  end
+
   def show
     @incident = Incident.find(params[:id])
     

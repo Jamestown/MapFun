@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
-  
+
+  map.connect '/incidents/news', :controller => 'incidents', :action => 'news', :format => 'xml'
   map.resources :incidents
   
   map.root :controller => 'incidents'
