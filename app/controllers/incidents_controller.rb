@@ -13,14 +13,14 @@ class IncidentsController < ApplicationController
     end
   end
   
-  # GET /incidents
-  # GET /incidents.xml
   def index
     @incidents = Incident.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @incidents }
+      format.xml  { 
+        render :text => @incidents.to_xml(:root => 'data')
+      }
     end
   end
 
